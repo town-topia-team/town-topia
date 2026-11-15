@@ -20,7 +20,8 @@ YOU MAY, WITHOUT ASKING:
    own license, but it may not copy our code beyond what is needed to hook
    into it (names, IDs, method signatures).
 5. Help out: report bugs and share ideas or translations by opening an issue
-   on GitHub. We do not accept pull requests.
+   on GitHub. Pull requests with code or assets are welcome too; you may fork
+   this repository on GitHub to make one. We decide what gets merged.
 6. Change it for yourself: private changes for your own use, as long as you
    do not share the changed Mod.
 
@@ -32,10 +33,11 @@ b. Publish a changed copy, fork, or port to another loader or game version,
 c. Sell the Mod or put it behind a paywall, ad link or early-access tier.
 d. Claim the Mod or any part of it as your own work.
 
-ANYTHING YOU SEND US: by sending a translation, idea, file or other
-suggestion, you give the authors a permanent, free, worldwide right to use,
-change and release it as part of the Mod, under this or any later license
-of the Mod, and you confirm it is yours to give.
+ANYTHING YOU SEND US: by sending a pull request, code, asset, translation,
+idea, file or other suggestion, you give the authors a permanent, free,
+worldwide right to use, change and release it as part of the Mod, under this
+or any later license of the Mod, whether or not we merge it, and you confirm
+it is yours to give.
 
 OTHER LICENSES: some parts keep their own terms. TEMPLATE_LICENSE.txt covers
 NeoForge's starter template files (MIT). GeckoLib is a separate library under
