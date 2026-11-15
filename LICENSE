@@ -1,0 +1,50 @@
+TownTopia License (All Rights Reserved, with permissions)
+
+Copyright (c) 2026 Heragoga and UrEasyKill76. All rights reserved.
+
+"The Mod" means TownTopia: its code, textures, models, animations, sounds,
+music and text, in this repository and in released jar files.
+
+YOU MAY, WITHOUT ASKING:
+1. Play it: single player, your own server, or a public server, including
+   servers that earn money within Mojang's rules.
+2. Put it in modpacks: include the unchanged Mod in any modpack, including
+   on platforms that pay creators. Where the platform allows, link to our
+   official download instead of re-uploading the file.
+3. Make videos and streams: show the Mod in videos, streams, screenshots,
+   reviews and articles, monetized or not. A link back is welcome, not required.
+4. Make addons: mods, datapacks, resource packs and Builder theme packs that
+   work with, depend on or change the Mod. You may read and compile against
+   our source code to do this. Resource packs may include edited versions of
+   our textures, models and sounds. Your addon is your own work under your
+   own license, but it may not copy our code beyond what is needed to hook
+   into it (names, IDs, method signatures).
+5. Help out: report bugs and share ideas or translations by opening an issue
+   on GitHub. We do not accept pull requests.
+6. Change it for yourself: private changes for your own use, as long as you
+   do not share the changed Mod.
+
+YOU MAY NOT, WITHOUT OUR WRITTEN PERMISSION:
+a. Re-upload the Mod, changed or unchanged, as its own download anywhere
+   (modpacks above are fine).
+b. Publish a changed copy, fork, or port to another loader or game version,
+   or reuse our code, models, textures, sounds or music in another project.
+c. Sell the Mod or put it behind a paywall, ad link or early-access tier.
+d. Claim the Mod or any part of it as your own work.
+
+ANYTHING YOU SEND US: by sending a translation, idea, file or other
+suggestion, you give the authors a permanent, free, worldwide right to use,
+change and release it as part of the Mod, under this or any later license
+of the Mod, and you confirm it is yours to give.
+
+OTHER LICENSES: some parts keep their own terms. TEMPLATE_LICENSE.txt covers
+NeoForge's starter template files (MIT). GeckoLib is a separate library under
+its own license. This license does not change those.
+
+NO WARRANTY: the Mod is provided "as is". The authors are not responsible for
+any damage, including lost worlds. Back up your saves.
+
+Want to do something not listed here? Ask us on GitHub.
+
+Not an official Minecraft product. Not approved by or associated with
+Mojang or Microsoft.

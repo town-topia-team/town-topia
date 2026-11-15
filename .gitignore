@@ -1,0 +1,36 @@
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# game folders made by the run tasks
+run
+runs
+run-data
+run-test
+run-render
+run-shots
+run-shots-server
+repo
+logs
+
+# Java crash reports
+hs_err_pid*.log
+replay_pid*.log
+
+# ./gradlew runData bookkeeping
+src/generated/resources/.cache/
