@@ -1,0 +1,310 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.115'
+    id 'idea'
+}
+
+tasks.named('wrapper', Wrapper).configure {
+    // Define wrapper values here so as to not have to always do so when updating gradlew.properties.
+    // Switching this to Wrapper.DistributionType.ALL will download the full gradle sources that comes with
+    // documentation attached on cursor hover of gradle classes and methods. However, this comes with increased
+    // file size for Gradle. If you do switch this to ALL, run the Gradle wrapper task twice afterwards.
+    // (Verify by checking gradle/wrapper/gradle-wrapper.properties to see if distributionUrl now points to `-all`)
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+version = mod_version
+group = mod_group_id
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroup("software.bernie.geckolib")
+        }
+    }
+}
+
+base {
+    archivesName = mod_id
+}
+
+// Mojang ships Java 21 to end users in 1.21.1, so mods should target Java 21.
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    // Specify the version of NeoForge to use.
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    // This line is optional. Access Transformers are automatically detected
+    // accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
+
+    // Default run configurations.
+    // These can be tweaked, removed, or duplicated as needed.
+    runs {
+        client {
+            client()
+
+            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        // Client used to photograph the animations, driven by tools/mocap/render_ingame.py.
+        //
+        // Its own game directory, because the check wants a window it can move the
+        // camera around in -- windowed, no pause-on-lost-focus, HUD off -- and none of
+        // that should be written over whatever you had set in 'run'. For mocap runs,
+        // -PrenderAutoConnect opts into joining runTestServer; without it this client
+        // opens at the menu like a normal client instead of showing a connection error
+        // whenever the companion server is not running.
+        renderClient {
+            client()
+            gameDirectory = project.file('run-render')
+            // Straight into runTestServer's world. --args on the run task prepends
+            // rather than appends, which lands ahead of the main class and does not
+            // start, so the opt-in quick-play arguments live here.
+            // -PrenderAutoConnect joins 127.0.0.1:25565; -PrenderAutoConnect=127.0.0.1:25590 another
+            // server (a second test server beside one that holds 25565, as mctest's client_smoke does).
+            def renderAutoConnect = providers.gradleProperty('renderAutoConnect')
+            if (renderAutoConnect.isPresent()) {
+                def address = renderAutoConnect.get()
+                programArguments.addAll '--quickPlayMultiplayer', address.contains(':') ? address : '127.0.0.1:25565'
+            }
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        // CurseForge screenshot pair, driven by tools/shots/take_shots.py. Own folders so
+        // the shader mods (Iris + Sodium, client only) and the copied showcase world never
+        // touch run-render or the harness world in run-test. The client always joins the
+        // shots server; RCON on 25576 (password shots).
+        shotsClient {
+            client()
+            gameDirectory = project.file('run-shots')
+            programArguments.addAll '--quickPlayMultiplayer', '127.0.0.1:25566'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        shotsServer {
+            server()
+            programArgument '--nogui'
+            gameDirectory = project.file('run-shots-server')
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            logLevel = org.slf4j.event.Level.INFO
+        }
+
+        // Headless server driven by the automated-testing harness in tools/mctest.
+        //
+        // It deliberately does NOT share the 'run' directory with the client and
+        // server configs above: the harness wipes its world between runs, and
+        // that must never touch a world you were playing in.
+        //
+        // 'towntopia.testkit.headless' keeps villages ticking with zero players
+        // online, which is the normal state for this server.
+        testServer {
+            server()
+            programArgument '--nogui'
+            gameDirectory = project.file('run-test')
+            systemProperty 'towntopia.testkit.headless', 'true'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            // DEBUG (inherited from configureEach) buries mod output under
+            // thousands of vanilla lines and makes log scanning useless.
+            logLevel = org.slf4j.event.Level.INFO
+        }
+
+        // This run config launches GameTestServer and runs all registered gametests, then exits.
+        // By default, the server will crash when no gametests are provided.
+        // The gametest system is also enabled by default for other run configs under the /test command.
+        gameTestServer {
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        data {
+            data()
+
+            // example of overriding the workingDirectory set in configureEach above, uncomment if you want to use it
+            // gameDirectory = project.file('run-data')
+
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+
+        // applies to all the run configs above
+        configureEach {
+            // Recommended logging data for a userdev environment
+            // The markers can be added/remove as needed separated by commas.
+            // "SCAN": For mods scan.
+            // "REGISTRIES": For firing of registry events.
+            // "REGISTRYDUMP": For getting the contents of all registries.
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+
+            // Recommended logging level for the console
+            // You can set various levels here.
+            // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        // define mod <-> source bindings
+        // these are used to tell the game which sources are for which mod
+        // multi mod projects should define one per mod
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+// runData writes straight into src/main/resources (datagen/SettingsLangData), so src/generated/resources
+// only ever gets runData's .cache. A standard data provider would write there: add it back as a srcDir then.
+
+// Notes (.md) and .webp reference pictures beside the sources stay out of the game:
+// Minecraft only takes lower-case file names, so each one logged "Invalid path in pack".
+tasks.named('processResources', ProcessResources).configure {
+    exclude '**/*.md', '**/*.webp'
+}
+
+// The license rides inside the jar, so every copy (modpacks included) carries it.
+tasks.named('jar', Jar).configure {
+    from('LICENSE')
+}
+
+// Villagers judge food with VillageItemOwnership.isVillagerFood / villagerFood, never with raw food data:
+// 1.21.1 gives the ominous bottle food data, and villagers drank it
+// (docs/plans/2026-10-22-villagers-eat-ominous-bottles.md). A new raw check fails the build. One that is
+// meant (vanilla's own food values) gets a "raw food data: <why>" comment on the line above.
+def foodCheckDir = file('src/main/java')
+def foodCheckRule = ~/(has|get)\((net\.minecraft\.core\.component\.)?DataComponents\.FOOD\)|getFoodProperties\(/
+def foodCheckHome = 'com/alex/test/village/tokens/VillageItemOwnership.java'
+def checkVillagerFood = tasks.register('checkVillagerFood') {
+    inputs.dir(foodCheckDir)
+    doLast {
+        def found = []
+        foodCheckDir.eachFileRecurse(groovy.io.FileType.FILES) { f ->
+            if (!f.name.endsWith('.java')) return
+            def path = foodCheckDir.toPath().relativize(f.toPath()).toString().replace('\\', '/')
+            if (path == foodCheckHome) return
+            def lines = f.readLines('UTF-8')
+            lines.eachWithIndex { line, i ->
+                if (!(line =~ foodCheckRule)) return
+                if (line.contains('raw food data:') || (i > 0 && lines[i - 1].contains('raw food data:'))) return
+                found << "${path}:${i + 1}: ${line.trim()}"
+            }
+        }
+        if (found) {
+            throw new GradleException('Raw food check: villagers must use VillageItemOwnership.isVillagerFood'
+                    + ' or villagerFood (the ominous bottle has food data). Meant on purpose? Put a'
+                    + ' "raw food data: <why>" comment on the line above.\n' + found.join('\n'))
+        }
+    }
+}
+tasks.named('compileJava').configure { dependsOn checkVillagerFood }
+
+// Sets up a dependency configuration called 'localRuntime'.
+// This configuration should be used instead of 'runtimeOnly' to declare
+// a dependency that will be present for runtime testing but that is
+// "optional", meaning it will not be pulled by dependents of this mod.
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+dependencies {
+    // Example optional mod dependency with JEI
+    // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
+    // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
+    // compileOnly "mezz.jei:jei-${mc_version}-neoforge-api:${jei_version}"
+    // We add the full version to localRuntime, not runtimeOnly, so that we do not publish a dependency on it
+    // localRuntime "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
+
+    // Example mod dependency using a mod jar from ./libs with a flat dir repository
+    // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
+    // The group id is ignored when searching -- in this case, it is "blank"
+    // implementation "blank:coolmod-${mc_version}:${coolmod_version}"
+
+    // Example mod dependency using a file as dependency
+    // implementation files("libs/coolmod-${mc_version}-${coolmod_version}.jar")
+
+    // Example project dependency using a sister or child project:
+    // implementation project(":myproject")
+
+    // For more info:
+    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
+    // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+    implementation "software.bernie.geckolib:geckolib-neoforge-1.21.1:4.8.4"
+    testImplementation platform("org.junit:junit-bom:5.11.4")
+    testImplementation "org.junit.jupiter:junit-jupiter"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+    // GeckoFingerprintTest builds sample classes with ASM (the main code gets ASM 9.8 from NeoForge).
+    testImplementation "org.ow2.asm:asm:9.8"
+}
+
+tasks.named('test', Test).configure {
+    useJUnitPlatform()
+}
+
+// This block of code expands all declared replace properties in the specified resource targets.
+// A missing property will result in an error. Properties are expanded using ${} Groovy notation.
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
+}
+// Include the output of "generateModMetadata" as an input directory for the build
+// this works with both building through Gradle and the IDE.
+sourceSets.main.resources.srcDir generateModMetadata
+// To avoid having to run "generateModMetadata" manually, make it run on every project reload
+neoForge.ideSyncTask generateModMetadata
+
+// Example configuration to allow publishing using the maven-publish plugin
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/repo"
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+// IDEA no longer automatically downloads sources/javadoc jars for dependencies, so we need to explicitly enable the behavior.
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}

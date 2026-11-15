@@ -1,0 +1,7 @@
+{
+  "planting_item": "minecraft:beetroot_seeds",
+  "crop_block": "minecraft:beetroots",
+  "maturity": { "type": "towntopia:age_property" },
+  "planting": { "type": "towntopia:farmland" },
+  "harvest": { "type": "towntopia:break_and_replant" }
+}

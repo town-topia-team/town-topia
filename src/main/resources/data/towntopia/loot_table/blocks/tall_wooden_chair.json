@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "conditions": [
+        { "condition": "minecraft:survives_explosion" }
+      ],
+      "entries": [
+        { "type": "minecraft:item", "name": "towntopia:tall_wooden_chair" }
+      ]
+    }
+  ],
+  "random_sequence": "towntopia:blocks/tall_wooden_chair"
+}

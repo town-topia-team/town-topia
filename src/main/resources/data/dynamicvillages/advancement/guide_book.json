@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "first_join": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "rewards": {
+    "loot": [
+      "towntopia:guide_book"
+    ]
+  }
+}

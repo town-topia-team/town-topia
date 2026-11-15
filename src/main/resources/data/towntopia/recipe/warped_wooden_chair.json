@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": {
+      "item": "minecraft:warped_planks"
+    }
+  },
+  "pattern": [
+    "P P",
+    "PPP",
+    "P P"
+  ],
+  "result": {
+    "count": 1,
+    "id": "towntopia:warped_wooden_chair"
+  }
+}

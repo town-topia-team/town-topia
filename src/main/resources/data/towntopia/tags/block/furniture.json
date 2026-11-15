@@ -1,0 +1,28 @@
+{
+  "values": [
+    "#minecraft:beds",
+    "#towntopia:storage_containers",
+    "#minecraft:anvil",
+    "#minecraft:cauldrons",
+    "#minecraft:shulker_boxes",
+    "minecraft:ender_chest",
+    "minecraft:crafting_table",
+    "minecraft:furnace",
+    "minecraft:blast_furnace",
+    "minecraft:smoker",
+    "minecraft:bookshelf",
+    "minecraft:chiseled_bookshelf",
+    "minecraft:lectern",
+    "minecraft:enchanting_table",
+    "minecraft:smithing_table",
+    "minecraft:cartography_table",
+    "minecraft:fletching_table",
+    "minecraft:loom",
+    "minecraft:stonecutter",
+    "minecraft:grindstone",
+    "minecraft:brewing_stand",
+    "minecraft:composter",
+    "minecraft:jukebox",
+    "minecraft:note_block"
+  ]
+}

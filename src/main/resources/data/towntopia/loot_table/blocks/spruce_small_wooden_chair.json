@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "towntopia:spruce_small_wooden_chair"
+        }
+      ]
+    }
+  ],
+  "random_sequence": "towntopia:blocks/spruce_small_wooden_chair"
+}

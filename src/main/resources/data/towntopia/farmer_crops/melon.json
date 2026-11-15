@@ -1,0 +1,8 @@
+{
+  "planting_item": "minecraft:melon_seeds",
+  "crop_block": ["minecraft:melon_stem", "minecraft:attached_melon_stem"],
+  "maturity": { "type": "towntopia:attached_fruit" },
+  "planting": { "type": "towntopia:farmland" },
+  "harvest": { "type": "towntopia:adjacent_fruit", "fruit_block": "minecraft:melon" },
+  "harvest_tool": "axe"
+}

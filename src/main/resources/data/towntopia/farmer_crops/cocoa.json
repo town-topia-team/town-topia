@@ -1,0 +1,11 @@
+{
+  "planting_item": "minecraft:cocoa_beans",
+  "crop_block": "minecraft:cocoa",
+  "maturity": { "type": "towntopia:age_property" },
+  "planting": {
+    "type": "towntopia:on_log",
+    "log_blocks": ["#minecraft:jungle_logs"]
+  },
+  "harvest": { "type": "towntopia:break_and_replant" },
+  "harvest_tool": "shears"
+}

@@ -1,0 +1,10 @@
+{
+  "planting_item": "minecraft:sugar_cane",
+  "crop_block": "minecraft:sugar_cane",
+  "maturity": { "type": "towntopia:stack_height" },
+  "planting": {
+    "type": "towntopia:near_water",
+    "soil_blocks": ["minecraft:sand"]
+  },
+  "harvest": { "type": "towntopia:preserve_base_stack" }
+}

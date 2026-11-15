@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "conditions": [
+        { "condition": "minecraft:survives_explosion" },
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "towntopia:spruce_zalith_piano_bench",
+          "properties": { "side": "right" }
+        }
+      ],
+      "entries": [
+        { "type": "minecraft:item", "name": "towntopia:spruce_zalith_piano_bench" }
+      ]
+    }
+  ],
+  "random_sequence": "towntopia:blocks/spruce_zalith_piano_bench"
+}
