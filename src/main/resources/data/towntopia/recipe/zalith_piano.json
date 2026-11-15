@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": { "item": "minecraft:white_candle" },
+    "R": { "item": "minecraft:paper" },
+    "P": { "item": "minecraft:oak_planks" },
+    "N": { "item": "minecraft:note_block" },
+    "L": [ { "item": "minecraft:stripped_oak_log" }, { "item": "minecraft:stripped_oak_wood" } ],
+    "G": { "item": "minecraft:gold_ingot" }
+  },
+  "pattern": [
+    "CRC",
+    "PNP",
+    "LGL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "towntopia:zalith_piano"
+  }
+}

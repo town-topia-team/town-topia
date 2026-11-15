@@ -1,0 +1,7 @@
+{
+  "planting_item": "minecraft:potato",
+  "crop_block": "minecraft:potatoes",
+  "maturity": { "type": "towntopia:age_property" },
+  "planting": { "type": "towntopia:farmland" },
+  "harvest": { "type": "towntopia:break_and_replant" }
+}

@@ -1,0 +1,7 @@
+{
+  "planting_item": "minecraft:carrot",
+  "crop_block": "minecraft:carrots",
+  "maturity": { "type": "towntopia:age_property" },
+  "planting": { "type": "towntopia:farmland" },
+  "harvest": { "type": "towntopia:break_and_replant" }
+}

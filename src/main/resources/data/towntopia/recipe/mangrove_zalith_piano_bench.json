@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": { "item": "minecraft:mangrove_planks" },
+    "L": [ { "item": "minecraft:stripped_mangrove_log" }, { "item": "minecraft:stripped_mangrove_wood" } ]
+  },
+  "pattern": [
+    "PPP",
+    "L L"
+  ],
+  "result": {
+    "count": 1,
+    "id": "towntopia:mangrove_zalith_piano_bench"
+  }
+}

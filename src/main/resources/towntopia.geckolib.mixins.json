@@ -1,0 +1,12 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "com.alex.test.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "GeoModelAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

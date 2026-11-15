@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "conditions": [
+        { "condition": "minecraft:survives_explosion" },
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "towntopia:bamboo_zalith_piano_bench",
+          "properties": { "side": "right" }
+        }
+      ],
+      "entries": [
+        { "type": "minecraft:item", "name": "towntopia:bamboo_zalith_piano_bench" }
+      ]
+    }
+  ],
+  "random_sequence": "towntopia:blocks/bamboo_zalith_piano_bench"
+}

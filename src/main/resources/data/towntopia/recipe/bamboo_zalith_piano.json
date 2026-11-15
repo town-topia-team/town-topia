@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": { "item": "minecraft:white_candle" },
+    "R": { "item": "minecraft:paper" },
+    "P": { "item": "minecraft:bamboo_planks" },
+    "N": { "item": "minecraft:note_block" },
+    "L": { "item": "minecraft:stripped_bamboo_block" },
+    "G": { "item": "minecraft:gold_ingot" }
+  },
+  "pattern": [
+    "CRC",
+    "PNP",
+    "LGL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "towntopia:bamboo_zalith_piano"
+  }
+}

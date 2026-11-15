@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": { "item": "minecraft:crimson_planks" },
+    "L": [ { "item": "minecraft:stripped_crimson_stem" }, { "item": "minecraft:stripped_crimson_hyphae" } ]
+  },
+  "pattern": [
+    "PPP",
+    "L L"
+  ],
+  "result": {
+    "count": 1,
+    "id": "towntopia:crimson_zalith_piano_bench"
+  }
+}

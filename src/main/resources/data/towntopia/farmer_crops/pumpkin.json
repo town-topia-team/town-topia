@@ -1,0 +1,8 @@
+{
+  "planting_item": "minecraft:pumpkin_seeds",
+  "crop_block": ["minecraft:pumpkin_stem", "minecraft:attached_pumpkin_stem"],
+  "maturity": { "type": "towntopia:attached_fruit" },
+  "planting": { "type": "towntopia:farmland" },
+  "harvest": { "type": "towntopia:adjacent_fruit", "fruit_block": "minecraft:pumpkin" },
+  "harvest_tool": "axe"
+}

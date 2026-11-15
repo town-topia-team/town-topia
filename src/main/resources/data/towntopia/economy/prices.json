@@ -1,0 +1,97 @@
+{
+  "_comment": [
+    "What the merchant pays, in emeralds per full stack (64, or 16 for eggs). Never above max_price, except a good listed by name under items, up to 64 (diamond: 24).",
+    "Live prices are rounded to whole emeralds (2.4 pays 2, 2.5 pays 3). A half stack of an odd price rounds up, then the next half pays the rest.",
+    "items beat tags, tags beat fallback_price. books: a top-level enchanted book of level V (level_5), any other top-level book (other).",
+    "Reload with /reload. Live prices (after recent sales) are shown by /vtest economy prices.",
+    "market: how sales move today's prices, also reloaded with /reload. drop_per_stack: a good's price is 1 / (1 + drop_per_stack * stacks sold lately). rise_per_emerald: every other good gains this much for each emerald the merchant spent lately, up to max_rise. lowest_share: no price falls below this share of its base. keep_each_morning: what is left of the sales counts each village morning."
+  ],
+  "market": {
+    "drop_per_stack": 0.08,
+    "rise_per_emerald": 0.002,
+    "max_rise": 0.15,
+    "lowest_share": 0.25,
+    "keep_each_morning": 0.6667
+  },
+  "max_price": 8,
+  "fallback_price": 4,
+  "items": {
+    "minecraft:cobblestone": 1,
+    "minecraft:cobbled_deepslate": 1,
+    "minecraft:stone": 1,
+    "minecraft:melon_slice": 1,
+    "minecraft:egg": 1,
+
+    "minecraft:sugar_cane": 2,
+    "minecraft:carrot": 2,
+    "minecraft:potato": 2,
+    "minecraft:beetroot": 2,
+    "minecraft:apple": 2,
+    "minecraft:sweet_berries": 2,
+    "minecraft:glow_berries": 2,
+    "minecraft:dried_kelp": 2,
+    "minecraft:feather": 2,
+    "minecraft:string": 2,
+    "minecraft:flint": 2,
+    "minecraft:iron_nugget": 2,
+    "minecraft:bamboo": 2,
+
+    "minecraft:wheat": 3,
+    "minecraft:beef": 3,
+    "minecraft:porkchop": 3,
+    "minecraft:chicken": 3,
+    "minecraft:mutton": 3,
+    "minecraft:rabbit": 3,
+    "minecraft:cod": 3,
+    "minecraft:salmon": 3,
+    "minecraft:rabbit_hide": 3,
+    "minecraft:paper": 3,
+    "minecraft:ink_sac": 3,
+    "minecraft:map": 3,
+    "minecraft:coal": 4,
+    "minecraft:charcoal": 3,
+    "minecraft:redstone": 3,
+    "minecraft:copper_ingot": 3,
+    "minecraft:amethyst_shard": 3,
+    "minecraft:arrow": 3,
+
+    "minecraft:pumpkin": 4,
+    "minecraft:bread": 4,
+    "minecraft:cooked_beef": 4,
+    "minecraft:cooked_porkchop": 4,
+    "minecraft:cooked_chicken": 4,
+    "minecraft:cooked_mutton": 4,
+    "minecraft:cooked_rabbit": 4,
+    "minecraft:cooked_cod": 4,
+    "minecraft:cooked_salmon": 4,
+    "minecraft:baked_potato": 4,
+    "minecraft:cookie": 4,
+    "minecraft:pumpkin_pie": 4,
+    "minecraft:leather": 4,
+    "minecraft:lapis_lazuli": 4,
+    "minecraft:obsidian": 4,
+    "minecraft:spectral_arrow": 4,
+
+    "minecraft:book": 5,
+    "minecraft:bookshelf": 5,
+    "minecraft:golden_carrot": 5,
+
+    "minecraft:iron_ingot": 6,
+    "minecraft:golden_apple": 6,
+
+    "minecraft:gold_ingot": 7,
+
+    "minecraft:diamond": 24
+  },
+  "tags": {
+    "minecraft:logs": 3,
+    "minecraft:wool": 2,
+    "minecraft:planks": 1,
+    "c:crops": 2,
+    "c:foods": 3
+  },
+  "books": {
+    "level_5": 6,
+    "other": 4
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": {
+      "item": "minecraft:cherry_planks"
+    }
+  },
+  "pattern": [
+    "P P",
+    "PPP",
+    "P P"
+  ],
+  "result": {
+    "count": 1,
+    "id": "towntopia:cherry_wooden_chair"
+  }
+}

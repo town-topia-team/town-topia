@@ -1,0 +1,7 @@
+{
+  "planting_item": "minecraft:wheat_seeds",
+  "crop_block": "minecraft:wheat",
+  "maturity": { "type": "towntopia:age_property" },
+  "planting": { "type": "towntopia:farmland" },
+  "harvest": { "type": "towntopia:break_and_replant" }
+}

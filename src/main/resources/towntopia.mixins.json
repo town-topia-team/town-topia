@@ -1,0 +1,31 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.alex.test.mixin",
+  "plugin": "com.alex.test.mixin.DynamicVillagesMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ChunkMapAccessor",
+    "CraftingMenuPianoMixin",
+    "DoorBlockLedAnimalMixin",
+    "FireBlockClaimMixin",
+    "ItemFrameMixin",
+    "LivingEntityPushCostMixin",
+    "MobLeashSaveMixin",
+    "PathFinderCostMixin",
+    "PathfinderMobLeashMixin",
+    "PlayerSpectateNpcMixin",
+    "ServerChunkCacheStallMixin",
+    "ServerGamePacketListenerImplMixin",
+    "TrackedEntityAccessor"
+  ],
+  "client": [
+    "BufferSourceAccessor",
+    "LevelRendererAccessor",
+    "LevelRendererEntityMixin",
+    "RenderTypeDrawMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

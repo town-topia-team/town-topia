@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": { "item": "minecraft:white_candle" },
+    "R": { "item": "minecraft:paper" },
+    "P": { "item": "minecraft:warped_planks" },
+    "N": { "item": "minecraft:note_block" },
+    "L": [ { "item": "minecraft:stripped_warped_stem" }, { "item": "minecraft:stripped_warped_hyphae" } ],
+    "G": { "item": "minecraft:gold_ingot" }
+  },
+  "pattern": [
+    "CRC",
+    "PNP",
+    "LGL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "towntopia:warped_zalith_piano"
+  }
+}
